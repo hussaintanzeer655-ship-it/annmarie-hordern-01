@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang=\"en\">
+<head>
+  <meta charset=\"utf-8\">
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+  <title>Annmarie Hordern - Portfolio</title>
+  <style>
+    :root{--bg:#0b1020;--card:#141a30;--fg:#e7eaff;--accent:#7bd389}
+    *{box-sizing:border-box} html,body{margin:0;height:100%} body{font-family:Arial, sans-serif;background:var(--bg);color:var(--fg)}
+    header{padding:1rem 1.25rem;border-bottom:1px solid #26314f;position:sticky;top:0;background:rgba(8,12,28,.95);z-index:10}
+    header h1{margin:0;font-size:1.05rem;letter-spacing:.5px}
+    nav{display:flex;gap:.5rem;margin-top:.25rem}
+    nav button{background:#1e2750;border:1px solid #32409b;color:#fff;padding:.5rem 1rem;border-radius:.25rem;cursor:pointer}
+    main{padding:1rem 1.25rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+    .card{background:var(--card);border:1px solid #2a2f60;border-radius:.5rem;padding:1rem;min-height:140px;display:flex;flex-direction:column;justify-content:space-between}
+    .card h3{margin:0 0 .5rem;font-size:1rem}
+    .chip{align-self:flex-start;font-size:.75rem;background:#2b315f;color:#fff;padding:.25rem .5rem;border-radius:999px}
+    .fab{align-self:flex-end;background:#7bd389;border:none;color:#002617;padding:.5rem 1rem;border-radius:999px;cursor:pointer}
+    footer{text-align:center;color:#9aa6d8;font-size:.85rem;margin:1.2rem 0}
+    @media (max-width:600px){ main{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Annmarie Hordern</h1>
+    <nav>
+      <button data-section="about">About</button>
+      <button data-section="projects">Projects</button>
+      <button data-section="contact">Contact</button>
+    </nav>
+  </header>
+  <section id="about" aria-label="about" style="padding:1rem 1.25rem;max-width:1200px;margin:0 auto;">
+    <div class="card" style="min-height:100px;">
+      <div>
+        <h3>Overview</h3>
+        <p>Designer & developer focused on accessible, fast, responsive UI.</p>
+      </div>
+      <span class="chip">bio</span>
+    </div>
+  </section>
+  <section id="projects" aria-label="projects">
+    <main>
+      <article class="card" aria-label="project-1">
+        <div>
+          <h3>Project A</h3>
+          <p>Responsive dashboard UI with keyboard navigation.</p>
+        </div>
+        <button class="fab" onclick="alert('Detail coming soon')">Details</button>
+      </article>
+      <article class="card" aria-label="project-2">
+        <div>
+          <h3>Project B</h3>
+          <p>Accessible data visualization card grid.</p>
+        </div>
+        <button class="fab" onclick="alert('Detail coming soon')">Details</button>
+      </article>
+      <article class="card" aria-label="project-3">
+        <div>
+          <h3>Project C</h3>
+          <p>Static site components with vanilla JS.</p>
+        </div>
+        <button class="fab" onclick="alert('Detail coming soon')">Details</button>
+      </article>
+    </main>
+  </section>
+  <section id="contact" aria-label="contact" style="padding:1rem 1.25rem;">
+    <form onsubmit="return handleSubmit(event)" aria-label="contact form" style="max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:.6rem;">
+      <input type="text" id="name" placeholder="Your name" required style="padding:.6rem;border-radius:.25rem;border:1px solid #334; background:#0f1730;color:#fff;">
+      <input type="email" id="email" placeholder="Email" required style="padding:.6rem;border-radius:.25rem;border:1px solid #334; background:#0f1730;color:#fff;">
+      <textarea id="message" placeholder="Message" rows="4" required style="padding:.6rem;border-radius:.25rem;border:1px solid #334; background:#0f1730;color:#fff;"></textarea>
+      <button type="submit" style="align-self:flex-start;background:#7bd389;border:0;color:#002617;padding:.6rem 1rem;border-radius:.25rem;cursor:pointer;">Send</button>
+      <span id="status" aria-live="polite" style="min-height:1em;color:#9ae68c"></span>
+    </form>
+  </section>
+  <footer>
+    <p>© 2024 Annmarie Hordern</p>
+  </footer>
+  <script>
+    const sections=document.querySelectorAll('header button');
+    sections.forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('section,main').forEach(s=>s.style.display='block');}));
+    function handleSubmit(e){e.preventDefault();
+      const n=document.getElementById('name').value;const em=document.getElementById('email').value;const m=document.getElementById('message').value;
+      if(!n||!em||!m){document.getElementById('status').textContent='Please fill all fields.';return false;}
+      document.getElementById('status').textContent='Message sent. Thanks '+n+'!';
+      e.target.reset();return false;
+    }
+  </script>
+</body>
+</html>
